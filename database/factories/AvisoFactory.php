@@ -16,13 +16,13 @@ class AvisoFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'tipo' => $this->faker->randomElement(['puntual', 'periodica']),
-            'categoria' => $this->faker->randomElement(['aviso', 'seguimiento', 'ausencia', 'preventiva']),
+            'tipo' => $this->faker->randomElement(['aviso', 'seguimiento', 'agenda']), // Ajuste para tipo
+            'categoria' => $this->faker->randomElement(['medicación', 'especiales', 'alerta', 'emergencia', 'dolores', 'alta hospitalária', 'suspensión', 'retorno']),
             'descripcion' => $this->faker->sentence,
             'fecha_inicio' => $this->faker->date(),
-            'frecuencia' => $this->faker->optional()->numberBetween(1, 30),
+            'frecuencia' => $this->faker->randomElement(['puntual', 'periodica']), // Ajuste para frecuencia
             'estado' => $this->faker->randomElement(['pendiente', 'completado', 'cancelado']),
-            'zona_id' => $this->faker->randomElement([1, 2, 3]), 
+            'zona_id' => $this->faker->randomElement([1, 2, 3]),
             'paciente_id' => Paciente::factory(),
         ];
     }
