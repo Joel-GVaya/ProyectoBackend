@@ -102,6 +102,7 @@ class User extends Authenticatable
         'fecha_baja',
         'nombre_user',
         'password',
+        'google_id'
     ];
 
     protected $hidden = [

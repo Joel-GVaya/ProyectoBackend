@@ -17,27 +17,11 @@ use App\Models\User;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/auth/google', function () {
-    return response()->json(   ['url' => Socialite::driver('google')->stateless()->redirect()->getTargetUrl()]);
-});
+Route::get('/auth/google', [AuthController::class, 'redirectToGoogle']);
 
-Route::get('/auth/google/callback', function (Request $request) {
-    try
-    {
-        $googleUser = Socialite::driver('google')->stateless()->user();
-        $user = User::updateOrCreate(
-            ['email' => $googleUser->getEmail()],
-            [
-                'name' => $googleUser->getName(),
-                'google_id' => $googleUser->getId(),
-            ]
-        );
-        $token = $user->createToken('google-auth')->plainTextToken;
-        return response()->json(['user' => $user, 'token' => $token]);
-    } catch (\Exception $e) {
-        return response()->json(['error' => 'No s\'ha pogut autenticar'], 401);
-    }
-    });
+
+Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
 
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
@@ -49,8 +33,9 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
     Route::put('/contactos/{id}', [ContactosController::class, 'update']);
     Route::delete('/contactos/{id}', [ContactosController::class, 'destroy']);
 
-    Route::get('/operadores', [OperadoresController::class, 'show']);
-    Route::post('/operadores/{id}', [OperadoresController::class, 'store']);
+    Route::get('/operadores', [OperadoresController::class, 'index']);
+    Route::get('/operadores/{id}', [OperadoresController::class, 'show']);
+    Route::post('/operadores', [OperadoresController::class, 'store']);
     Route::put('/operadores/{id}', [OperadoresController::class, 'update']);
     Route::delete('/operadores/{id}', [OperadoresController::class, 'destroy']);
 

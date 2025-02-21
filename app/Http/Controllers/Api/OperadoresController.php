@@ -70,9 +70,15 @@ class OperadoresController extends BaseController
      *     )
      * )
      */
-    public function show(User $operador)
+    public function show($id)
     {
-        return $this->sendResponse($operador, 'Operador obtenido con éxito', 200);
+        $operador = User::find($id);
+    
+        if (!$operador) {
+            return $this->sendError('Operador no encontrado', [], 404);
+        }
+    
+        return $this->sendResponse($operador, 'Operador obtenido con éxito', 200);
     }
 
     /**

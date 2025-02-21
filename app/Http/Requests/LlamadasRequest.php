@@ -73,9 +73,9 @@ class LlamadasRequest extends FormRequest
     {
         return [
             'fecha_hora' => 'required|date',
-            'operador_id' => 'required|exists:operadores,id',
+            'user_id' => 'required|exists:users,id',
             'paciente_id' => 'required|exists:pacientes,id',
-            'tipo' => 'nullable|string|in:urgente,no urgente',
+            'tipo' => 'nullable|string|max:255',
             'subtipo' => 'nullable|string|max:255',
             'descripcion' => 'required|string|max:500',
             'planificado' => 'nullable|boolean',
