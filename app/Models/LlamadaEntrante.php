@@ -37,9 +37,9 @@ use App\Models\Paciente;
  *         example=3
  *     ),
  *     @OA\Property(
- *         property="tipo",
+ *         property="emergencia",
  *         type="string",
- *         description="Tipo de llamada (por ejemplo, entrante, salida)",
+ *         description="Tipo de llamada (por ejemplo, emergencia o no)",
  *         example="Entrante"
  *     ),
  *     @OA\Property(
@@ -72,7 +72,7 @@ class LlamadaEntrante extends Model
         'fecha_hora',
         'user_id',
         'paciente_id',
-        'tipo',
+        'emergencia',
         'subtipo',
         'descripcion',
         'duracion',
