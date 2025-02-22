@@ -7,29 +7,28 @@ return [
     | Cross-Origin Resource Sharing (CORS) Configuration
     |--------------------------------------------------------------------------
     |
-    | Here you may configure your settings for cross-origin resource sharing
-    | or "CORS". This determines what cross-origin operations may execute
-    | in web browsers. You are free to adjust these settings as needed.
+    | Aquí puedes configurar tus ajustes para el intercambio de recursos de
+    | origen cruzado (CORS). Esto determina qué operaciones se pueden
+    | ejecutar en los navegadores web.
     |
-    | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+    | Más información: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
     |
     */
 
-    'paths' => ['api/*', 'login', 'logout', 'register'],
+    'paths' => ['*'], // Permite todas las rutas
 
+    'allowed_methods' => ['*'], // Permite todos los métodos (GET, POST, PUT, DELETE, etc.)
 
-    'allowed_methods' => ['*'],
+    'allowed_origins' => ['*'], // Permite todos los orígenes
 
-    'allowed_origins' => ['*'],
+    'allowed_origins_patterns' => [], // No se restringen patrones de origen
 
-    'allowed_origins_patterns' => [],
+    'allowed_headers' => ['*'], // Permite todos los encabezados
 
-    'allowed_headers' => ['*'],
+    'exposed_headers' => [], // No expone encabezados adicionales
 
-    'exposed_headers' => [],
+    'max_age' => 0, // No establece tiempo máximo de caché para preflight
 
-    'max_age' => 0,
-
-    'supports_credentials' => true,
+    'supports_credentials' => true, // Permite el envío de credenciales (cookies, headers de autenticación, etc.)
 
 ];
