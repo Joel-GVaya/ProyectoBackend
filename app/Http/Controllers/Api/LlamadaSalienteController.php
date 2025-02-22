@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\LlamadaSaliente;
-use App\Http\Requests\LlamadasRequest;
-use App\Http\Resources\LlamadasResource;
+use App\Http\Requests\LlamadasSalientesRequest;
+use App\Http\Resources\LlamadasSalientesResource;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 
@@ -21,7 +21,7 @@ class LlamadaSalienteController extends BaseController
     public function index()
     {
         $llamadasSalientes = LlamadaSaliente::all();
-        return $this->sendResponse(LlamadasResource::collection($llamadasSalientes), 200);
+        return $this->sendResponse(LlamadasSalientesResource::collection($llamadasSalientes), 200);
     }
 
     /**
@@ -31,16 +31,16 @@ class LlamadaSalienteController extends BaseController
      *     tags={"Llamadas Salientes"},
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/LlamadasRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/LlamadasSalientesResource")
      *     ),
      *     @OA\Response(response=201, description="Llamada creada con éxito."),
      *     @OA\Response(response=422, description="Datos inválidos.")
      * )
      */
-    public function store(LlamadasRequest $request)
+    public function store(LlamadasSalientesRequest $request)
     {
         $llamada = LlamadaSaliente::create($request->validated());
-        return $this->sendResponse(new LlamadasResource($llamada), 'Llamada creada con éxito.', 201);
+        return $this->sendResponse(new LlamadasSalientesResource($llamada), 'Llamada creada con éxito.', 201);
     }
 
     /**
@@ -55,13 +55,13 @@ class LlamadaSalienteController extends BaseController
      */
     public function show($id)
     {
-        $llamada = LlamadaSaliente::find($id);
+        $llamada = LlamadaSaliente::findOrFail($id);
 
         if (!$llamada) {
             return $this->sendError('Llamada no encontrada.', 404);
         }
 
-        return $this->sendResponse(new LlamadasResource($llamada), 'Detalles de la llamada obtenidos con éxito.');
+        return $this->sendResponse(new LlamadasSalientesResource($llamada), 'Detalles de la llamada obtenidos con éxito.');
     }
 
     /**
@@ -72,15 +72,15 @@ class LlamadaSalienteController extends BaseController
      *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/LlamadasRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/LlamadasSalientesResource")
      *     ),
      *     @OA\Response(response=200, description="Llamada actualizada con éxito."),
      *     @OA\Response(response=404, description="Llamada no encontrada.")
      * )
      */
-    public function update(LlamadasRequest $request, $id)
+    public function update(LlamadasSalientesRequest $request, $id)
     {
-        $llamada = LlamadaSaliente::find($id);
+        $llamada = LlamadaSaliente::findOrFail($id);
 
         if (!$llamada) {
             return $this->sendError('Llamada no encontrada.', 404);
@@ -88,7 +88,7 @@ class LlamadaSalienteController extends BaseController
 
         $llamada->update($request->validated());
 
-        return $this->sendResponse(new LlamadasResource($llamada), 'Llamada actualizada con éxito.');
+        return $this->sendResponse(new LlamadasSalientesResource($llamada), 'Llamada actualizada con éxito.');
     }
 
     /**
@@ -103,7 +103,7 @@ class LlamadaSalienteController extends BaseController
      */
     public function destroy($id)
     {
-        $llamada = LlamadaSaliente::find($id);
+        $llamada = LlamadaSaliente::findOrFail($id);
 
         if (!$llamada) {
             return $this->sendError('Llamada no encontrada.', 404);
@@ -132,7 +132,7 @@ class LlamadaSalienteController extends BaseController
             return $this->sendError('No se encontraron llamadas para este paciente.', 404);
         }
 
-        return $this->sendResponse(LlamadasResource::collection($llamadasSalientes), 'Lista de llamadas del paciente obtenida con éxito.');
+        return $this->sendResponse(LlamadasSalientesResource::collection($llamadasSalientes), 'Lista de llamadas del paciente obtenida con éxito.');
     }
 
     public function byUser($id)
@@ -143,6 +143,6 @@ class LlamadaSalienteController extends BaseController
             return $this->sendError('No se encontraron llamadas para este usuario.', 404);
         }
 
-        return $this->sendResponse(LlamadasResource::collection($llamadasSalientes), 'Lista de llamadas del usuario obtenida con éxito.');
+        return $this->sendResponse(LlamadasSalientesResource::collection($llamadasSalientes), 'Lista de llamadas del usuario obtenida con éxito.');
     }
 }

@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Paciente;
+use App\Models\Aviso;
+
 /**
  * @OA\Schema(
  *     description="Modelo LlamadaSaliente que representa una llamada saliente relacionada con un paciente.",

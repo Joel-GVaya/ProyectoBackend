@@ -69,7 +69,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     )
  * )
  */
-class LlamadasResource extends JsonResource
+class LlamadasEntrantesResource extends JsonResource
 {
     /**
      * Transforma el recurso en un array.
@@ -81,12 +81,15 @@ class LlamadasResource extends JsonResource
         return [
             'id' => $this->id,
             'fecha_hora' => $this->fecha_hora,
-            'tipo' => $this->tipo ?? 'saliente',
             'subtipo' => $this->subtipo ?? null,
             'descripcion' => $this->descripcion,
             'user_id' => $this->user_id ? $this->user_id : null,
             'paciente' => $this->paciente ? $this->paciente->id : null,
+<<<<<<< HEAD:app/Http/Resources/LlamadasResource.php
             'planificado' => $this->planificado ?? false,
+=======
+            'emergencia' => $this->emergencia,
+>>>>>>> origin/miguel:app/Http/Resources/LlamadasEntrantesResource.php
             'duracion' => $this->duracion ?? null,
         ];
     }
