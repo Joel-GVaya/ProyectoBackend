@@ -84,7 +84,7 @@ class LlamadasEntrantesResource extends JsonResource
             'subtipo' => $this->subtipo ?? null,
             'descripcion' => $this->descripcion,
             'user_id' => $this->user_id ? $this->user_id : null,
-            'paciente' => $this->paciente ? $this->paciente->id : null,
+            'paciente_id' => $this->paciente ? $this->paciente->id : null,
             'emergencia' => $this->emergencia,
             'duracion' => $this->duracion ?? null,
         ];
