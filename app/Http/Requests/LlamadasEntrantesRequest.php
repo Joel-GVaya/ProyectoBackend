@@ -30,7 +30,7 @@ class LlamadasEntrantesRequest extends FormRequest
         return [
             'fecha_hora' => 'required|date',
             'user_id' => 'required|exists:users,id',
-            'paciente' => 'required|exists:pacientes,id',
+            'paciente_id' => 'required|exists:pacientes,id',
             'subtipo' => 'nullable|string|max:255',
             'descripcion' => 'required|string|max:500',
             'emergencia' => 'nullable|boolean',
