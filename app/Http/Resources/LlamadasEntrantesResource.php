@@ -22,9 +22,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         example="2024-02-18T14:30:00Z"
  *     ),
  *     @OA\Property(
- *         property="tipo",
- *         type="string",
- *         description="Tipo de llamada (entrante o saliente)",
+ *         property="emergencia",
+ *         type="boolean",
+ *         description="Tipo de llamada (urgente o no)",
  *         example="saliente"
  *     ),
  *     @OA\Property(
