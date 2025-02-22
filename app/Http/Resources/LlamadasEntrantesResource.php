@@ -85,11 +85,7 @@ class LlamadasEntrantesResource extends JsonResource
             'descripcion' => $this->descripcion,
             'user_id' => $this->user_id ? $this->user_id : null,
             'paciente' => $this->paciente ? $this->paciente->id : null,
-<<<<<<< HEAD:app/Http/Resources/LlamadasResource.php
-            'planificado' => $this->planificado ?? false,
-=======
             'emergencia' => $this->emergencia,
->>>>>>> origin/miguel:app/Http/Resources/LlamadasEntrantesResource.php
             'duracion' => $this->duracion ?? null,
         ];
     }

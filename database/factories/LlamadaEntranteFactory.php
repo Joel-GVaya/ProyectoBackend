@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+
 use App\Models\LlamadaEntrante;
 use App\Models\Operador;
 use App\Models\Paciente;
@@ -17,10 +18,23 @@ class LlamadaEntranteFactory extends Factory
             'fecha_hora' => $this->faker->dateTimeThisYear(),
             'user_id' => User::factory(),
             'paciente_id' => Paciente::factory(),
-            'tipo' => $this->faker->randomElement(['emergencia', 'no_urgente']),
-            'subtipo' => $this->faker->word,
+            'emergencia' => $this->faker->boolean,
+            'subtipo' => $this->faker->randomElement([
+                'Emergencias sociales',
+                'Emergencias sanitarias',
+                'Crisis de soledad o angustia',
+                'Alarma sin respuesta',
+                'Otro tipo de llamada',
+                'Notificar ausencias o retornos',
+                'Modificar datos personales',
+                'Llamadas accidentales',
+                'Solicitud de informacion',
+                'Sugerencias, quejas o reclamaciones',
+                'Llamadas sociales',
+                'Registrar citas medicas',
+            ]),
             'descripcion' => $this->faker->sentence,
-            'duracion' => $this->faker->numberBetween(30, 3600), 
+            'duracion' => $this->faker->numberBetween(30, 3600),
         ];
     }
 }
