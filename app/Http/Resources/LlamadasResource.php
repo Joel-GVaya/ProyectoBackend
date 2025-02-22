@@ -87,7 +87,7 @@ class LlamadasResource extends JsonResource
             'user_id' => $this->user_id ? $this->user_id : null,
             'paciente' => $this->paciente ? $this->paciente->id : null,
             'planificado' => $this->planificado ?? false,
-            'duración' => $this->duracion ?? null,
+            'duracion' => $this->duracion ?? null,
         ];
     }
 }
