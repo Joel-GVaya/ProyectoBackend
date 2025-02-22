@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\LlamadaEntrante;
-use App\Http\Requests\LlamadasRequest;
-use App\Http\Resources\LlamadasResource;
+use App\Http\Requests\LlamadasEntrantesRequest;
+use App\Http\Resources\LlamadasEntrantesResource;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 
@@ -19,14 +19,14 @@ class LlamadaEntranteController extends BaseController
      *     @OA\Response(
      *         response=200,
      *         description="Lista de llamadas obtenida con éxito",
-     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/LlamadasResource"))
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/LlamadasEntrantesResource"))
      *     )
      * )
      */
     public function index()
     {
         $llamadasEntrantes = LlamadaEntrante::all();
-        return $this->sendResponse(LlamadasResource::collection($llamadasEntrantes), 200);
+        return $this->sendResponse(LlamadasEntrantesResource::collection($llamadasEntrantes), 200);
     }
 
     /**
@@ -37,19 +37,19 @@ class LlamadaEntranteController extends BaseController
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/LlamadasRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/LlamadasEntrantesRequest")
      *     ),
      *     @OA\Response(
      *         response=201,
      *         description="Llamada creada con éxito",
-     *         @OA\JsonContent(ref="#/components/schemas/LlamadasResource")
+     *         @OA\JsonContent(ref="#/components/schemas/LlamadasEntrantesResource")
      *     )
      * )
      */
-    public function store(LlamadasRequest $request)
+    public function store(LlamadasEntrantesRequest $request)
     {
         $llamada = LlamadaEntrante::create($request->validated());
-        return $this->sendResponse(new LlamadasResource($llamada), 'Llamada creada con éxito.', 201);
+        return $this->sendResponse(new LlamadasEntrantesResource($llamada), 'Llamada creada con éxito.', 201);
     }
 
     /**
@@ -68,7 +68,7 @@ class LlamadaEntranteController extends BaseController
      *     @OA\Response(
      *         response=200,
      *         description="Detalles de la llamada obtenidos con éxito",
-     *         @OA\JsonContent(ref="#/components/schemas/LlamadasResource")
+     *         @OA\JsonContent(ref="#/components/schemas/LlamadasEntrantesResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -84,7 +84,7 @@ class LlamadaEntranteController extends BaseController
             return $this->sendError('Llamada no encontrada.', 404);
         }
 
-        return $this->sendResponse(new LlamadasResource($llamada), 'Detalles de la llamada obtenidos con éxito.');
+        return $this->sendResponse(new LlamadasEntrantesResource($llamada), 'Detalles de la llamada obtenidos con éxito.');
     }
 
     /**
@@ -102,12 +102,12 @@ class LlamadaEntranteController extends BaseController
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/LlamadasRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/LlamadasEntrantesRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Llamada actualizada con éxito",
-     *         @OA\JsonContent(ref="#/components/schemas/LlamadasResource")
+     *         @OA\JsonContent(ref="#/components/schemas/LlamadasEntrantesResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -115,7 +115,7 @@ class LlamadaEntranteController extends BaseController
      *     )
      * )
      */
-    public function update(LlamadasRequest $request, $id)
+    public function update(LlamadasEntrantesRequest $request, $id)
     {
         $llamada = LlamadaEntrante::find($id);
 
@@ -125,7 +125,7 @@ class LlamadaEntranteController extends BaseController
 
         $llamada->update($request->validated());
 
-        return $this->sendResponse(new LlamadasResource($llamada), 'Llamada actualizada con éxito.');
+        return $this->sendResponse(new LlamadasEntrantesResource($llamada), 'Llamada actualizada con éxito.');
     }
     /**
      * @OA\Delete(
@@ -160,7 +160,7 @@ class LlamadaEntranteController extends BaseController
 
         $llamada->delete();
 
-        return $this->sendResponse([], 200, 'Llamada eliminada con éxito.');
+        return $this->sendResponse([], 'Llamada eliminada con éxito.', 200);
     }
 
     /**
@@ -179,7 +179,7 @@ class LlamadaEntranteController extends BaseController
      *     @OA\Response(
      *         response=200,
      *         description="Lista de llamadas del paciente obtenida con éxito",
-     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/LlamadasResource"))
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/LlamadasEntrantesResource"))
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -195,7 +195,7 @@ class LlamadaEntranteController extends BaseController
             return $this->sendError('No se encontraron llamadas para este paciente.', 404);
         }
 
-        return $this->sendResponse(LlamadasResource::collection($llamadasEntrantes), 'Lista de llamadas del paciente obtenida con éxito.');
+        return $this->sendResponse(LlamadasEntrantesResource::collection($llamadasEntrantes), 'Lista de llamadas del paciente obtenida con éxito.');
     }
 
     public function byUser($id)
@@ -206,6 +206,6 @@ class LlamadaEntranteController extends BaseController
             return $this->sendError('No se encontraron llamadas para este usuario.', 404);
         }
 
-        return $this->sendResponse(LlamadasResource::collection($llamadasEntrantes), 'Lista de llamadas del usuario obtenida con éxito.');
+        return $this->sendResponse(LlamadasEntrantesResource::collection($llamadasEntrantes), 'Lista de llamadas del usuario obtenida con éxito.');
     }
 }
