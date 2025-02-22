@@ -28,12 +28,22 @@ class AvisosResource extends JsonResource
             'id' => $this->id,
             'tipo' => $this->tipo,
             'descripcion' => $this->descripcion,
+            'frecuencia' => $this->frecuencia,
             'paciente' => [
                 'id' => $this->paciente->id,
                 'nombre' => $this->paciente->nombre,
             ],
             'fecha_inicio' => $this->fecha_inicio,
             'estado' => $this->estado,
+            'categoria' => $this->categoria,
+            'operador' => [
+                'id' => $this->operador->id,
+                'nombre' => $this->operador->nombre,
+            ],
+            'zona' => [
+                'id' => $this->zona->id,
+                'nombre' => $this->zona->nombre,
+            ],
         ];
     }
 }

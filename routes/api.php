@@ -45,7 +45,7 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
     Route::put('/llamadas_salientes/{id}', [LlamadaSalienteController::class, 'update']);
     Route::delete('/llamadas_salientes/{id}', [LlamadaSalienteController::class, 'destroy']);
     Route::get('/pacientes/{id}/llamadas_salientes', [LlamadaSalienteController::class, 'byPaciente']);
-    Route::get('/users/{id}/llamadas_salientes', [LlamadaSalienteController::class, 'byUser']);
+    Route::get('/users/{id}/llamadas_salientes', action: [LlamadaSalienteController::class, 'byUser']);
 
     Route::get('/llamadas_entrantes', [LlamadaEntranteController::class, 'index']);
     Route::post('/llamadas_entrantes', [LlamadaEntranteController::class, 'store']);
