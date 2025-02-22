@@ -11,7 +11,7 @@ class CreateAvisosTable extends Migration
         Schema::create('avisos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->default(1)->constrained('users')->onDelete('cascade');
-            $table->enum('tipo', ['aviso', 'seguimiento', 'agenda']);
+            $table->enum('tipo', ['aviso', 'seguimiento', 'agenda', 'alarma']);
             $table->enum('categoria', ['medicación', 'especiales', 'alerta', 'emergencia', 'dolores', 'alta hospitalária', 'suspensión', 'retorno']);
             $table->enum('estado', ['pendiente', 'completado', 'cancelado'])->default('pendiente');
             $table->text('descripcion')->nullable();

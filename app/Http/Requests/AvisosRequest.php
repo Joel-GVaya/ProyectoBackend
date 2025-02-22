@@ -56,9 +56,8 @@ class AvisosRequest extends FormRequest
         return [
             'tipo' => 'required|string|max:50',
             'descripcion' => 'required|string|max:255',
-            'paciente_id' => 'required|exists:pacientes,id',
             'fecha_inicio' => 'required|date',
-            'estado' => 'required|string|in:pendiente,resuelto',
+            'estado' => 'string|in:pendiente,resuelto',
         ];
     }
 }
