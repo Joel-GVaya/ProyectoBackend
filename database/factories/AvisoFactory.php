@@ -27,4 +27,3 @@ class AvisoFactory extends Factory
         ];
     }
 }
-

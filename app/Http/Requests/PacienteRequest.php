@@ -137,20 +137,19 @@ class PacienteRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:100',
             'fecha_nac' => 'required|date',
-            'DNI' => 'required|string|max:15|unique:pacientes,DNI',
-            'num_sip' => 'required|integer|unique:pacientes,num_sip',
+            'DNI' => 'required|string|max:15',
+            'num_sip' => 'required|string|max:15',
             'telefono' => 'required|string|max:20',
             'correo' => 'required|email|max:100',
             'direccion' => 'required|string',
             'ciudad' => 'required|string|max:50',
-            'cp' => 'required|integer',
-            'zona' => 'required|exists:zonas,id',
+            'cp' => 'required|string|max:5',
+            'zona_id' => 'required|exists:zonas,id',
             'sit_personal' => 'required|string|max:50',
             'sit_sanitaria' => 'required|string|max:50',
             'sit_habitaculo' => 'required|string|max:50',
             'sit_economica' => 'required|string|max:50',
             'autonomia' => 'required|boolean',
-            'persona_contacto' => 'required',
         ];
     }
 }
