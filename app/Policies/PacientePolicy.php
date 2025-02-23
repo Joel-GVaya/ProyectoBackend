@@ -21,7 +21,7 @@ class PacientePolicy
      */
     public function view(User $user, Paciente $paciente): bool
     {
-        return $user->rol == 'Usuario';
+        return true;
     }
 
     /**
