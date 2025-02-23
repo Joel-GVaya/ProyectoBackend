@@ -21,7 +21,8 @@ class AvisoPolicy
      */
     public function view(User $user, Aviso $aviso): bool
     {
-        return $user->rol == 'Usuario' && $user->zona_id == $aviso->zona_id;
+        //return $user->rol == 'Usuario' && $user->zona_id == $aviso->zona_id;
+        return true;
     }
 
     /**

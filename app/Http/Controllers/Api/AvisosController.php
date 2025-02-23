@@ -71,6 +71,7 @@ class AvisosController extends BaseController
      */
     public function store(AvisosRequest $request)
     {
+        dd($request->all());
         $this->authorize('create', Aviso::class);
         $aviso = Aviso::create($request->validated());
         return $this->sendResponse(new AvisosResource($aviso), 'Aviso/alarma creado con éxito.', 201);
