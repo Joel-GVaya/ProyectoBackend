@@ -58,7 +58,7 @@ class AvisosRequest extends FormRequest
             'categoria' => 'nullable|string|in:medicacion,especiales,alerta,emergencia,dolores,alta hospitalaria,suspension,retorno',
             'descripcion' => 'required|string|max:255',
             'fecha_inicio' => 'required|date',
-            'frecuencia' => 'nullable|string|in:puntual,periodica',
+            'frecuencia' => 'nullable|string',
             'estado' => 'nullable|string|in:pendiente,completado,cancelado',
             'zona_id' => 'nullable|exists:zonas,id',
             'paciente_id' => 'nullable|exists:pacientes,id',
