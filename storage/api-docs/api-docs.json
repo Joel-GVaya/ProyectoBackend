@@ -1765,9 +1765,9 @@
                         "format": "date-time",
                         "example": "2024-02-18T14:30:00Z"
                     },
-                    "tipo": {
-                        "description": "Tipo de llamada (entrante o saliente)",
-                        "type": "string",
+                    "emergencia": {
+                        "description": "Tipo de llamada (urgente o no)",
+                        "type": "boolean",
                         "example": "saliente"
                     },
                     "subtipo": {
@@ -2227,8 +2227,8 @@
                         "type": "integer",
                         "example": 3
                     },
-                    "tipo": {
-                        "description": "Tipo de llamada (por ejemplo, entrante, salida)",
+                    "emergencia": {
+                        "description": "Tipo de llamada (por ejemplo, emergencia o no)",
                         "type": "string",
                         "example": "Entrante"
                     },

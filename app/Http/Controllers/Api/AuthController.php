@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class AuthController extends BaseController
             $result['nombre'] = $authOperador->nombre;
             $result['id'] = $authOperador->id;
             $result['token'] = $token;
+            $result['zona_id'] = $authOperador->zona_id;
 
 
             return $this->sendResponse($result, 'Operador autenticado correctamente', 200);
@@ -49,15 +51,15 @@ class AuthController extends BaseController
     }
 
     public function redirectToGoogle()
-{
-    return Socialite::driver('google')->redirect();
-}
+    {
+        return Socialite::driver('google')->redirect();
+    }
 
 
-public function handleGoogleCallback()
-{
-    try {
-        $googleUser = Socialite::driver('google')->stateless()->user();
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->stateless()->user();
 
             // Cerca o crea l'usuari a la base de dades
             $user = User::updateOrCreate(
@@ -72,16 +74,16 @@ public function handleGoogleCallback()
             // Autentica l'usuari
             Auth::login($user);
 
-        // Generar token Sanctum
-        // Si volem autenticar en l'API podriem generar un token
-        $token = $user->createToken('Personal Access Token')->plainTextToken;
+            // Generar token Sanctum
+            // Si volem autenticar en l'API podriem generar un token
+            $token = $user->createToken('Personal Access Token')->plainTextToken;
 
-        // Redirigir l'usuari amb el token
-        return view('auth.success', ['token' => $token]); // Asumint que tens una vista 'auth.success'
+            // Redirigir l'usuari amb el token
+            return view('auth.success', ['token' => $token]); // Asumint que tens una vista 'auth.success'
 
-    } catch (\Exception $e) {
-        // Maneig d'errors
-        return view('auth.error', ['error' => $e->getMessage()]); // Asumint que tens una vista 'auth.error'
+        } catch (\Exception $e) {
+            // Maneig d'errors
+            return view('auth.error', ['error' => $e->getMessage()]); // Asumint que tens una vista 'auth.error'
+        }
     }
-}
 }
