@@ -15,10 +15,24 @@ class OperadoresController extends BaseController
         $this->authorize('viewAny', User::class);
         $operadores = User::all();
         return $this->sendResponse($operadores, 'Operadores obtenidos con éxito', 200);
-        return $this->sendResponse($operadores, 'Operadores obtenidos con éxito', 200);
     }
 
-
+    /**
+     * @OA\Post(
+     *     path="/api/operadores",
+     *     summary="Crear un nuevo operador",
+     *     tags={"Operadores"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Operador creado con éxito",
+     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *     )
+     * )
+     */
     public function store(OperadoresRequest $request)
     {
         $this->authorize('create', User::class);
