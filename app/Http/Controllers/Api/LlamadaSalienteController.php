@@ -24,19 +24,21 @@ class LlamadaSalienteController extends BaseController
         return $this->sendResponse(LlamadasSalientesResource::collection($llamadasSalientes), 200);
     }
 
-    /**
-     * @OA\Post(
-     *     path="/api/llamadas-salientes",
-     *     summary="Crear una llamada saliente",
-     *     tags={"Llamadas Salientes"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/LlamadasSalientesResource")
-     *     ),
-     *     @OA\Response(response=201, description="Llamada creada con éxito."),
-     *     @OA\Response(response=422, description="Datos inválidos.")
-     * )
-     */
+/**
+ * @OA\Post(
+ *     path="/api/llamadas-salientes",
+ *     summary="Crear una llamada saliente",
+ *     tags={"Llamadas Salientes"},
+ *     @OA\RequestBody(
+ *         required=true,
+ *     ),
+ *     @OA\Response(
+ *         response=201,
+ *         description="Llamada creada con éxito",
+ *     ),
+ *     @OA\Response(response=422, description="Datos inválidos.")
+ * )
+ */
     public function store(LlamadasSalientesRequest $request)
     {
         $llamada = LlamadaSaliente::create($request->validated());
