@@ -19,7 +19,10 @@ class OperadoresController extends BaseController
         $this->authorize('viewAny', User::class);
         $operadores = User::all();
         return $this->sendResponse($operadores, 'Operadores obtenidos con éxito', 200);
+<<<<<<< HEAD
         return $this->sendResponse($operadores, 'Operadores obtenidos con éxito', 200);
+=======
+>>>>>>> 3b34d17 (Calendario)
     }
 
 
@@ -58,8 +61,12 @@ class OperadoresController extends BaseController
         if (!$operador) {
             return $this->sendError('Operador no encontrado', [], 404);
         }
+<<<<<<< HEAD
     
         $this->authorize('view', $operador);
+=======
+
+>>>>>>> 3b34d17 (Calendario)
         return $this->sendResponse($operador, 'Operador obtenido con éxito', 200);
     }
 
