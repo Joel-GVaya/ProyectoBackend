@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\OperadoresRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class OperadoresController extends BaseController
 {
