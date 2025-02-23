@@ -2508,10 +2508,6 @@
     },
     "tags": [
         {
-            "name": "Zonas",
-            "description": "API para la gestión de zonas"
-        },
-        {
             "name": "Avisos",
             "description": "Avisos"
         },
@@ -2534,6 +2530,10 @@
         {
             "name": "Reportes",
             "description": "Reportes"
+        },
+        {
+            "name": "Zonas",
+            "description": "Zonas"
         }
     ]
 }
