@@ -11,27 +11,23 @@ class UserController extends Controller
 {
     public function index()
     {
-        // Obtener todos los usuarios
         $users = User::where('rol', 'Usuario')->get();
         return view('users.index', compact('users'));
     }
 
     public function show(User $user)
     {
-        // Mostrar los detalles de un usuario
         return view('users.show', compact('user'));
     }
 
     public function create()
     {
-        // Mostrar el formulario para crear un nuevo usuario
         $zonas = Zona::all();
         return view('users.create', compact('zonas'));
     }
 
     public function store(Request $request)
     {
-        // Validar los datos de entrada
         $request->validate([
             'nombre' => 'required|string|max:100',
             'telefono' => 'required|string|max:20',
@@ -44,11 +40,9 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
         ]);
     
-        // Crear el nuevo usuario
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
         
-        // Crear el usuario y manejar errores
         try {
             User::create($data);
             return redirect()->route('users.index')->with('success', 'Usuario creado con éxito.');
@@ -59,14 +53,12 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        // Mostrar el formulario para editar un usuario
         $zonas = Zona::all();
         return view('users.edit', compact('user', 'zonas'));
     }
 
     public function update(Request $request, User $user)
     {
-        // Validar los datos de entrada
         $request->validate([
             'nombre' => 'required|string|max:100',
             'telefono' => 'required|string|max:20',
@@ -76,15 +68,14 @@ class UserController extends Controller
             'idiomas' => 'nullable|string|max:50',
             'fecha_contrato' => 'required|date',
             'nombre_user' => 'required|string|max:15',
-            'password' => 'nullable|string|min:8', // Solo validar si se proporciona
+            'password' => 'nullable|string|min:8', 
         ]);
 
-        // Actualizar los datos del usuario
         $data = $request->all();
         if (!empty($data['password'])) {
-            $data['password'] = Hash::make($data['password']); // Hashear la contraseña si se proporciona
+            $data['password'] = Hash::make($data['password']);
         } else {
-            unset($data['password']); // No actualizar la contraseña si no se proporciona
+            unset($data['password']); 
         }
 
         $user->update($data);
@@ -93,7 +84,6 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        // Eliminar un usuario
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Usuario eliminado con éxito.');
     }
