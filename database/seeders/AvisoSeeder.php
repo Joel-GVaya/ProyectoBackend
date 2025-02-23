@@ -7,7 +7,7 @@ class AvisoSeeder extends DatabaseSeeder
 {
     public function run()
     {
-        \App\Models\Aviso::factory(10)->create();
+        \App\Models\Aviso::factory(70)->create();
     }
 }
 

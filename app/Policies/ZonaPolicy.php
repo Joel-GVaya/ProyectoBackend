@@ -13,7 +13,7 @@ class ZonaPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->rol == 'Administrador';
+        return true;
     }
 
     /**

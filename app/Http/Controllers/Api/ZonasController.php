@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\ZonaRequest;
 use App\Http\Resources\ZonaResource;
 use App\Models\Zona;
-use App\Models\Operador;
 use Illuminate\Http\Request;
 
+/**
+ * @OA\Tag(name="Zonas", description="API para la gestión de zonas")
+ */
 class ZonasController extends BaseController
 {
-        /**
+    /**
      * @OA\Get(
      *     path="/api/zonas",
      *     summary="Obtener lista de zonas",
@@ -31,18 +32,27 @@ class ZonasController extends BaseController
         $zonas = Zona::all();
         return $this->sendResponse(ZonaResource::collection($zonas), 'Lista de zonas obtenida con éxito.');
     }
+
     /**
      * @OA\Get(
-     *     path="/api/zonas",
-     *     summary="Obtener lista de zonas",
+     *     path="/api/zonas/{id}",
+     *     summary="Obtener una zona específica",
      *     tags={"Zonas"},
      *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID de la zona",
+     *         @OA\Schema(type="integer")
+     *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Lista de zonas obtenida con éxito",
-     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/Zona"))
+     *         description="Zona obtenida con éxito",
+     *         @OA\JsonContent(ref="#/components/schemas/Zona")
      *     ),
-     *     @OA\Response(response=403, description="No autorizado")
+     *     @OA\Response(response=403, description="No autorizado"),
+     *     @OA\Response(response=404, description="Zona no encontrada")
      * )
      */
     public function show(Zona $zona)
@@ -50,5 +60,4 @@ class ZonasController extends BaseController
         $this->authorize('view', $zona);
         return $this->sendResponse(new ZonaResource($zona), 'Zona obtenida con éxito.');
     }
-
 }

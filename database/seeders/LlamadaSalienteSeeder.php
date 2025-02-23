@@ -7,7 +7,7 @@ class LlamadaSalienteSeeder extends DatabaseSeeder
 {
     public function run()
     {
-        \App\Models\LlamadaSaliente::factory(10)->create();
+        \App\Models\LlamadaSaliente::factory(30)->create();
     }
 }
 

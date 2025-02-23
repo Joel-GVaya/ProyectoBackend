@@ -54,11 +54,14 @@ class AvisosRequest extends FormRequest
     public function rules()
     {
         return [
-            'tipo' => 'required|string|max:50',
+            'tipo' => 'required|string|in:avisos,seguimiento,agendas,alarma',
+            'categoria' => 'nullable|string|in:medicacion,especiales,alerta,emergencia,dolores,alta hospitalaria,suspension,retorno',
             'descripcion' => 'required|string|max:255',
-            'paciente_id' => 'required|exists:pacientes,id',
             'fecha_inicio' => 'required|date',
-            'estado' => 'required|string|in:pendiente,resuelto',
+            'frecuencia' => 'nullable|string',
+            'estado' => 'nullable|string|in:pendiente,completado,cancelado',
+            'zona_id' => 'nullable|exists:zonas,id',
+            'paciente_id' => 'nullable|exists:pacientes,id',
         ];
     }
 }

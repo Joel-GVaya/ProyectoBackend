@@ -16,7 +16,7 @@ class UserFactory extends Factory
             'telefono' => $this->faker->phoneNumber,
             'correo' => $this->faker->unique()->safeEmail,
             'rol' => $this->faker->randomElement(['Administrador', 'Usuario']),
-            'zona_id' => Zona::factory(),
+            'zona_id' => $this->faker->randomElement([1, 2, 3]), 
             'idiomas' => $this->faker->word,
             'fecha_contrato' => $this->faker->date(),
             'fecha_baja' => $this->faker->optional()->date(),

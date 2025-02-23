@@ -21,7 +21,7 @@ class PacientePolicy
      */
     public function view(User $user, Paciente $paciente): bool
     {
-        return $user->rol == 'Usuario' && $paciente->zona_id == $user->zona_id;
+        return $user->rol == 'Usuario';
     }
 
     /**
@@ -37,7 +37,7 @@ class PacientePolicy
      */
     public function update(User $user, Paciente $paciente): bool
     {
-        return $user->rol == 'Usuario' && $paciente->zona_id == $user->zona_id;
+        return $user->rol == 'Usuario';
     }
 
     /**
@@ -45,7 +45,7 @@ class PacientePolicy
      */
     public function delete(User $user, Paciente $paciente): bool
     {
-        return $user->rol == 'Usuario' && $paciente->zona_id == $user->zona_id;
+        return $user->rol == 'Usuario';
     }
 
     /**

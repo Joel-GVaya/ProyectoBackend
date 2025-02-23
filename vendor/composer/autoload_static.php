@@ -359,8 +359,8 @@ class ComposerStaticInit101896e37f7617aca97b8772b6b35a9a
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -412,8 +412,8 @@ class ComposerStaticInit101896e37f7617aca97b8772b6b35a9a
         ),
         'League\\Uri\\' => 
         array (
-            0 => __DIR__ . '/..' . '/league/uri-interfaces',
-            1 => __DIR__ . '/..' . '/league/uri',
+            0 => __DIR__ . '/..' . '/league/uri',
+            1 => __DIR__ . '/..' . '/league/uri-interfaces',
         ),
         'League\\OAuth1\\Client\\' => 
         array (
@@ -602,7 +602,8 @@ class ComposerStaticInit101896e37f7617aca97b8772b6b35a9a
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Http\\Requests\\AvisosRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AvisosRequest.php',
         'App\\Http\\Requests\\ContactosRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ContactosRequest.php',
-        'App\\Http\\Requests\\LlamadasRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LlamadasRequest.php',
+        'App\\Http\\Requests\\LlamadasEntrantesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LlamadasEntrantesRequest.php',
+        'App\\Http\\Requests\\LlamadasSalientesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LlamadasSalientesRequest.php',
         'App\\Http\\Requests\\OperadoresRequest' => __DIR__ . '/../..' . '/app/Http/Requests/OperadoresRequest.php',
         'App\\Http\\Requests\\PacienteRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PacienteRequest.php',
         'App\\Http\\Requests\\ReportesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ReportesRequest.php',
@@ -611,7 +612,8 @@ class ComposerStaticInit101896e37f7617aca97b8772b6b35a9a
         'App\\Http\\Requests\\ZonaRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ZonaRequest.php',
         'App\\Http\\Resources\\AvisosResource' => __DIR__ . '/../..' . '/app/Http/Resources/AvisosResource.php',
         'App\\Http\\Resources\\ContactosResource' => __DIR__ . '/../..' . '/app/Http/Resources/ContactosResource.php',
-        'App\\Http\\Resources\\LlamadasResource' => __DIR__ . '/../..' . '/app/Http/Resources/LlamadasResource.php',
+        'App\\Http\\Resources\\LlamadasEntrantesResource' => __DIR__ . '/../..' . '/app/Http/Resources/LlamadasEntrantesResource.php',
+        'App\\Http\\Resources\\LlamadasSalientesResource' => __DIR__ . '/../..' . '/app/Http/Resources/LlamadasSalientesResource.php',
         'App\\Http\\Resources\\OperadoresResource' => __DIR__ . '/../..' . '/app/Http/Resources/OperadoresResource.php',
         'App\\Http\\Resources\\PacienteResource' => __DIR__ . '/../..' . '/app/Http/Resources/PacienteResource.php',
         'App\\Http\\Resources\\ReportesResource' => __DIR__ . '/../..' . '/app/Http/Resources/ReportesResource.php',
@@ -754,7 +756,6 @@ class ComposerStaticInit101896e37f7617aca97b8772b6b35a9a
         'Database\\Factories\\LlamadaSalienteFactory' => __DIR__ . '/../..' . '/database/factories/LlamadaSalienteFactory.php',
         'Database\\Factories\\PacienteFactory' => __DIR__ . '/../..' . '/database/factories/PacienteFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
-        'Database\\Factories\\ZonaFactory' => __DIR__ . '/../..' . '/database/factories/ZonaFactory.php',
         'Database\\Seeders\\AvisoSeeder' => __DIR__ . '/../..' . '/database/seeders/AvisoSeeder.php',
         'Database\\Seeders\\ContactoSeeder' => __DIR__ . '/../..' . '/database/seeders/ContactoSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',

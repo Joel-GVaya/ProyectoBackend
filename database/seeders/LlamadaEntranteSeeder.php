@@ -7,6 +7,6 @@ class LlamadaEntranteSeeder extends DatabaseSeeder
 {
     public function run()
     {
-        \App\Models\LlamadaEntrante::factory(10)->create();
+        \App\Models\LlamadaEntrante::factory(30)->create();
     }
 }

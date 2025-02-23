@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Paciente;
+
 /**
  * @OA\Schema(
  *     description="Modelo LlamadaEntrante que representa una llamada entrante relacionada con un paciente.",
@@ -34,9 +37,9 @@ use Illuminate\Database\Eloquent\Model;
  *         example=3
  *     ),
  *     @OA\Property(
- *         property="tipo",
+ *         property="emergencia",
  *         type="string",
- *         description="Tipo de llamada (por ejemplo, entrante, salida)",
+ *         description="Tipo de llamada (por ejemplo, emergencia o no)",
  *         example="Entrante"
  *     ),
  *     @OA\Property(
@@ -69,7 +72,7 @@ class LlamadaEntrante extends Model
         'fecha_hora',
         'user_id',
         'paciente_id',
-        'tipo',
+        'emergencia',
         'subtipo',
         'descripcion',
         'duracion',

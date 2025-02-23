@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('telefono', 20);
             $table->string('correo', 100);
             $table->enum('rol', ['Administrador', 'Usuario']);
-            $table->foreignId('zona_id')->constrained('zonas');
+            $table->foreignId('zona_id')->constrained('zonas')->restrictOnDelete();
             $table->string('idiomas', 50);
             $table->date('fecha_contrato');
             $table->date('fecha_baja')->nullable();

@@ -13,12 +13,12 @@ class CreatePacientesTable extends Migration
             $table->string('nombre', 100);
             $table->date('fecha_nac');
             $table->string('DNI', 15);
-            $table->integer('num_sip');
+            $table->string('num_sip', 8);
             $table->string('telefono', 20);
             $table->string('correo', 100);
             $table->text('direccion');
             $table->string('ciudad', 50);
-            $table->integer('cp');
+            $table->string('cp', 5);
             $table->foreignId('zona_id')->constrained('zonas')->onDelete('cascade');
             $table->string('sit_personal', 50);
             $table->string('sit_sanitaria', 50);

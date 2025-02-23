@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Operador;
+use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends BaseController
 {
@@ -32,6 +34,7 @@ class AuthController extends BaseController
             $result['nombre'] = $authOperador->nombre;
             $result['id'] = $authOperador->id;
             $result['token'] = $token;
+            $result['zona_id'] = $authOperador->zona_id;
 
 
             return $this->sendResponse($result, 'Operador autenticado correctamente', 200);
@@ -46,4 +49,35 @@ class AuthController extends BaseController
 
         return $this->sendResponse([], 'Operador cerrado sesión correctamente', 200);
     }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->stateless()->user();
+            $user = User::updateOrCreate(
+                ['email' => $googleUser->email],
+                [
+                    'name' => $googleUser->name,
+                    'google_id' => $googleUser->id,
+                    'avatar' => $googleUser->avatar,
+                    'password' => bcrypt(uniqid()),
+                    'role' => 'Usuario',
+                ]
+            );
+
+            Auth::login($user);
+
+            $token = $user->createToken('Personal Access Token')->plainTextToken;
+
+            return redirect()->to("http://localhost:5173/auth-success?token=$token");
+        } catch (\Exception $e) {
+            return redirect()->to("http://localhost:5173/auth-error");
+        }
+    }    
 }

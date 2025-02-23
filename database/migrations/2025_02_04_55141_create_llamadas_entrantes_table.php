@@ -13,8 +13,21 @@ class CreateLlamadasEntrantesTable extends Migration
             $table->timestamp('fecha_hora');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('paciente_id')->nullable()->constrained('pacientes')->onDelete('set null');
-            $table->string('tipo');
-            $table->string('subtipo');
+            $table->boolean('emergencia');
+            $table->enum('subtipo', [
+                'Emergencias sociales',
+                'Emergencias sanitarias',
+                'Crisis de soledad o angustia',
+                'Alarma sin respuesta',
+                'Otro tipo de llamada',
+                'Notificar ausencias o retornos',
+                'Modificar datos personales',
+                'Llamadas accidentales',
+                'Solicitud de informacion',
+                'Sugerencias, quejas o reclamaciones',
+                'Llamadas sociales',
+                'Registrar citas medicas',
+            ]);
             $table->text('descripcion');
             $table->integer('duracion')->nullable()->comment('Duración de la llamada en segundos');
             $table->timestamps();
