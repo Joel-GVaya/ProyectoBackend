@@ -37,7 +37,7 @@ class LlamadasSalientesResource extends JsonResource
             'fecha_hora' => $this->fecha_hora,
             'descripcion' => $this->descripcion,
             'user_id' => $this->user_id ?? null,
-            'paciente_id' => $this->paciente->id ?? null,
+            'paciente' => $this->paciente->id ?? null,
             'planificado' => $this->planificado,
             'duracion' => $this->duracion,
             'aviso_id' => $this->aviso_id ?? null,

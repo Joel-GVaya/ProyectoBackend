@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class OperadoresController extends BaseController
 {
 
+
     public function index()
     {
         $this->authorize('viewAny', User::class);
@@ -17,30 +18,33 @@ class OperadoresController extends BaseController
         return $this->sendResponse($operadores, 'Operadores obtenidos con éxito', 200);
     }
 
-    /**
-     * @OA\Post(
-     *     path="/api/operadores",
-     *     summary="Crear un nuevo operador",
-     *     tags={"Operadores"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Operador creado con éxito",
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     )
-     * )
-     */
+
     public function store(OperadoresRequest $request)
     {
         $this->authorize('create', User::class);
         $operador = User::create($request->validated());
-        return $this->sendResponse($operador, 'Operador creado con éxito', 201);
+        return $this->sendResponse($operador, 'Operador creado con éxito', 201);
     }
 
-
+    /**
+     * @OA\Get(
+     *     path="/api/operadores/{id}",
+     *     summary="Obtener un operador por ID",
+     *     tags={"Operadores"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID del operador",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Operador obtenido con éxito",
+     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *     )
+     * )
+     */
     public function show($id)
     {
         $operador = User::find($id);
@@ -48,7 +52,7 @@ class OperadoresController extends BaseController
         if (!$operador) {
             return $this->sendError('Operador no encontrado', [], 404);
         }
-    
+
         $this->authorize('view', $operador);
         return $this->sendResponse($operador, 'Operador obtenido con éxito', 200);
     }
@@ -58,10 +62,27 @@ class OperadoresController extends BaseController
     {
         $this->authorize('update', $operador);
         $operador->update($request->validated());
-        return $this->sendResponse($operador, 'Operador actualizado con éxito', 200);
+        return $this->sendResponse($operador, 'Operador actualizado con éxito', 200);
     }
 
-
+    /**
+     * @OA\Delete(
+     *     path="/api/operadores/{id}",
+     *     summary="Eliminar un operador",
+     *     tags={"Operadores"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID del operador",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Operador eliminado con éxito"
+     *     )
+     * )
+     */
     public function destroy(User $operador)
     {
         $this->authorize('delete', $operador);
