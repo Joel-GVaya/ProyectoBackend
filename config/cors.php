@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'], // Permite todos los métodos (GET, POST, PUT, DELETE, etc.)
 
-    'allowed_origins' => ['*'], // Permite todos los orígenes
+    'allowed_origins' => ['http://localhost:5173'],
 
     'allowed_origins_patterns' => [], // No se restringen patrones de origen
 
