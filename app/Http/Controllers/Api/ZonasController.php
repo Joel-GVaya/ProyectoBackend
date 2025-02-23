@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\ZonaRequest;
 use App\Http\Resources\ZonaResource;
 use App\Models\Zona;
-use App\Models\Operador;
 use Illuminate\Http\Request;
 
+/**
+ * @OA\Tag(name="Zonas", description="API para la gestión de zonas")
+ */
 class ZonasController extends BaseController
 {
     /**
@@ -34,14 +35,15 @@ class ZonasController extends BaseController
 
     /**
      * @OA\Get(
-     *     path="/api/zonas/{zona}",
-     *     summary="Obtener detalles de una zona específica",
+     *     path="/api/zonas/{id}",
+     *     summary="Obtener una zona específica",
      *     tags={"Zonas"},
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
-     *         name="zona",
+     *         name="id",
      *         in="path",
      *         required=true,
+     *         description="ID de la zona",
      *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
@@ -49,7 +51,8 @@ class ZonasController extends BaseController
      *         description="Zona obtenida con éxito",
      *         @OA\JsonContent(ref="#/components/schemas/Zona")
      *     ),
-     *     @OA\Response(response=403, description="No autorizado")
+     *     @OA\Response(response=403, description="No autorizado"),
+     *     @OA\Response(response=404, description="Zona no encontrada")
      * )
      */
     public function show(Zona $zona)
