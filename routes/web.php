@@ -11,4 +11,7 @@ Route::get('/', function () {
 Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 
+Route::resource('zonas', ZonaController::class);
+Route::resource('users', UserController::class);//->middleware('auth');
+
 require __DIR__.'/auth.php';

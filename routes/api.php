@@ -18,10 +18,11 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/auth/google', [AuthController::class, 'redirectToGoogle']);
-
-
 Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return response()->json(['user' => $request->user()]);
+});
 
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
@@ -64,12 +65,11 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
     Route::get('/zonas', [ZonasController::class, 'index']);
     Route::get('/zonas/{zona}', [ZonasController::class, 'show']);
     Route::get('/zonas/{id}/pacientes', [ZonasController::class, 'pacientes']);
-    Route::get('/zonas/{id}/operadores', [OperadoresController::class, 'index']); 
+    Route::get('/zonas/{id}/operadores', [OperadoresController::class, 'index']);
 
-    /* Route::get('/reportes/emergencias', [ReportesController::class, 'emergencias']);
+    Route::get('/reportes/emergencias', [ReportesController::class, 'emergencias']);
     Route::get('/reportes/pacientes', [ReportesController::class, 'pacientes']);
     Route::get('/reportes/llamadas-programadas', [ReportesController::class, 'llamadasProgramadas']);
     Route::get('/reportes/llamadas-realizadas', [ReportesController::class, 'llamadasRealizadas']);
     Route::get('/reportes/historico-paciente/{id}', [ReportesController::class, 'historicoPaciente']);
-    */
 });

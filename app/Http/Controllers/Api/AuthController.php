@@ -61,29 +61,24 @@ class AuthController extends BaseController
         try {
             $googleUser = Socialite::driver('google')->stateless()->user();
 
-            // Cerca o crea l'usuari a la base de dades
             $user = User::updateOrCreate(
                 ['email' => $googleUser->email],
                 [
                     'name' => $googleUser->name,
                     'google_id' => $googleUser->id,
                     'avatar' => $googleUser->avatar,
+                    'password' => bcrypt(uniqid()),
+                    'role' => 'Usuario',
                 ]
             );
 
-            // Autentica l'usuari
             Auth::login($user);
 
-            // Generar token Sanctum
-            // Si volem autenticar en l'API podriem generar un token
             $token = $user->createToken('Personal Access Token')->plainTextToken;
 
-            // Redirigir l'usuari amb el token
-            return view('auth.success', ['token' => $token]); // Asumint que tens una vista 'auth.success'
-
+            return redirect()->to("http://localhost:5173/auth-success?token=$token");
         } catch (\Exception $e) {
-            // Maneig d'errors
-            return view('auth.error', ['error' => $e->getMessage()]); // Asumint que tens una vista 'auth.error'
+            return redirect()->to("http://localhost:5173/auth-error");
         }
     }
 }

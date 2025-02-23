@@ -2,55 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Models\Zona;
 
-class UserController extends BaseController
+class UserController extends Controller
 {
-    use AuthorizesRequests;
-
-    /**
-     * Mostrar una lista de usuarios.
-     */
     public function index()
     {
-        $this->authorize('viewAny', User::class);
-        $users = User::all();
-        return $this->sendResponse($users, 'Lista de usuarios obtenida con éxito.');
+        $users = User::where('rol', 'Usuario')->get();
+        return view('users.index', compact('users'));
     }
 
-    /**
-     * Guardar un nuevo usuario en la base de datos.
-     */
-    public function store(StoreUserRequest $request)
-    {
-        $this->authorize('create', User::class);
-        $data = $request->validated();
-        $data['password'] = Hash::make($data['password']); 
-        $user = User::create($data);
-        return $this->sendResponse($user, 'Usuario creado con éxito.', 201);
-    }
-
-    /**
-     * Mostrar los detalles de un usuario específico.
-     */
     public function show(User $user)
     {
-        $this->authorize('view', $user);
-        return $this->sendResponse($user, 'Detalles del usuario obtenidos con éxito.');
+        return view('users.show', compact('user'));
     }
 
-    /**
-     * Actualizar la información de un usuario.
-     */
-    public function update(UpdateUserRequest $request, User $user)
+    public function create()
     {
-        $this->authorize('update', $user);
-        $data = $request->validated();
+        $zonas = Zona::all();
+        return view('users.create', compact('zonas'));
+    }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:100',
+            'telefono' => 'required|string|max:20',
+            'correo' => 'required|string|email|max:100|unique:users',
+            'rol' => 'required|in:Administrador,Usuario',
+            'zona_id' => 'required|exists:zonas,id',
+            'idiomas' => 'nullable|string|max:50',
+            'fecha_contrato' => 'required|date',
+            'nombre_user' => 'required|string|max:15',
+            'password' => 'required|string|min:8',
+        ]);
+
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+
+        try {
+            User::create($data);
+            return redirect()->route('users.index')->with('success', 'Usuario creado con éxito.');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Error al crear el usuario: ' . $e->getMessage()]);
+        }
+    }
+
+    public function edit(User $user)
+    {
+        $zonas = Zona::all();
+        return view('users.edit', compact('user', 'zonas'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:100',
+            'telefono' => 'required|string|max:20',
+            'correo' => 'required|string|email|max:100|unique:users,correo,' . $user->id,
+            'rol' => 'required|in:Administrador,Usuario',
+            'zona_id' => 'required|exists:zonas,id',
+            'idiomas' => 'nullable|string|max:50',
+            'fecha_contrato' => 'required|date',
+            'nombre_user' => 'required|string|max:15',
+            'password' => 'nullable|string|min:8',
+        ]);
+
+        $data = $request->all();
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         } else {
@@ -58,16 +79,12 @@ class UserController extends BaseController
         }
 
         $user->update($data);
-        return $this->sendResponse($user, 'Usuario actualizado con éxito.', 200);
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado con éxito.');
     }
 
-    /**
-     * Eliminar un usuario.
-     */
     public function destroy(User $user)
     {
-        $this->authorize('delete', $user);
         $user->delete();
-        return $this->sendResponse([], 'Usuario eliminado con éxito.', 200);
+        return redirect()->route('users.index')->with('success', 'Usuario eliminado con éxito.');
     }
 }

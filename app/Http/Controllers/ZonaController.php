@@ -2,59 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ZonaRequest;
 use App\Models\Zona;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 
-class ZonaController extends BaseController
+class ZonaController extends Controller
 {
-    use AuthorizesRequests;
-
-    /**
-     * Mostrar una lista de zonas.
-     */
     public function index()
     {
-        $this->authorize('viewAny', Zona::class);
-        return $this->sendResponse(Zona::all(), 'Lista de zonas obtenida con éxito.');
+        $zonas = Zona::all();
+        return view('zonas.index', compact('zonas'));
     }
 
-    /**
-     * Guardar una nueva zona en la base de datos.
-     */
-    public function store(ZonaRequest $request)
+    public function create()
     {
-        $this->authorize('create', Zona::class);
-        $zona = Zona::create($request->validated());
-        return $this->sendResponse($zona, 'Zona creada con éxito.', 201);
+        return view('zonas.create');
     }
 
-    /**
-     * Mostrar los detalles de una zona específica.
-     */
-    public function show(Zona $zona)
+    public function store(Request $request)
     {
-        $this->authorize('view', $zona);
-        return $this->sendResponse($zona, 'Detalles de la zona obtenidos con éxito.');
+        $request->validate([
+            'nombre' => 'required|string|max:50|unique:zonas',
+            'descripcion' => 'nullable|string',
+        ]);
+
+        Zona::create($request->all());
+        return redirect()->route('zonas.index')->with('success', 'Zona creada con éxito.');
     }
 
-    /**
-     * Actualizar la información de una zona.
-     */
-    public function update(ZonaRequest $request, Zona $zona)
+    public function edit(Zona $zona)
     {
-        $this->authorize('update', $zona);
-        $zona->update($request->validated());
-        return $this->sendResponse($zona, 'Zona actualizada con éxito.', 200);
+        return view('zonas.edit', compact('zona'));
     }
 
-    /**
-     * Eliminar una zona.
-     */
+    public function update(Request $request, Zona $zona)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:50|unique:zonas,nombre,' . $zona->id,
+            'descripcion' => 'nullable|string',
+        ]);
+
+        $zona->update($request->all());
+        return redirect()->route('zonas.index')->with('success', 'Zona actualizada con éxito.');
+    }
+
     public function destroy(Zona $zona)
     {
-        $this->authorize('delete', $zona);
         $zona->delete();
-        return $this->sendResponse(null, 'Zona eliminada con éxito.', 204);
+        return redirect()->route('zonas.index')->with('success', 'Zona eliminada con éxito.');
     }
 }
