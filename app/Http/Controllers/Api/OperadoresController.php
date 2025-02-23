@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\OperadoresRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class OperadoresController extends BaseController
 {
+
     public function index()
     {
         $this->authorize('viewAny', User::class);
@@ -30,7 +30,6 @@ class OperadoresController extends BaseController
         if (!$operador) {
             return $this->sendError('Operador no encontrado', [], 404);
         }
-    
         $this->authorize('view', $operador);
         return $this->sendResponse($operador, 'Operador obtenido con éxito', 200);
     }
