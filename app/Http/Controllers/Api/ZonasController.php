@@ -32,24 +32,16 @@ class ZonasController extends BaseController
 
     /**
      * @OA\Get(
-     *     path="/api/zonas/{id}",
-     *     summary="Obtener una zona específica",
+     *     path="/api/zonas",
+     *     summary="Obtener lista de zonas",
      *     tags={"Zonas"},
      *     security={{"bearerAuth":{}}},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="ID de la zona",
-     *         @OA\Schema(type="integer")
-     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Zona obtenida con éxito",
      *         @OA\JsonContent(ref="#/components/schemas/Zona")
      *     ),
-     *     @OA\Response(response=403, description="No autorizado"),
-     *     @OA\Response(response=404, description="Zona no encontrada")
+     *     @OA\Response(response=403, description="No autorizado")
      * )
      */
     public function show(Zona $zona)
@@ -57,4 +49,5 @@ class ZonasController extends BaseController
         $this->authorize('view', $zona);
         return $this->sendResponse(new ZonaResource($zona), 'Zona obtenida con éxito.');
     }
+
 }

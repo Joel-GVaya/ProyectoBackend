@@ -15,6 +15,7 @@ class OperadoresController extends BaseController
         $this->authorize('viewAny', User::class);
         $operadores = User::all();
         return $this->sendResponse($operadores, 'Operadores obtenidos con éxito', 200);
+        return $this->sendResponse($operadores, 'Operadores obtenidos con éxito', 200);
     }
 
 
@@ -29,7 +30,7 @@ class OperadoresController extends BaseController
     public function show($id)
     {
         $operador = User::find($id);
-    
+
         if (!$operador) {
             return $this->sendError('Operador no encontrado', [], 404);
         }
