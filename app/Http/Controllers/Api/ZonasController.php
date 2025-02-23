@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ZonasController extends BaseController
 {
-        /**
+    /**
      * @OA\Get(
      *     path="/api/zonas",
      *     summary="Obtener lista de zonas",
@@ -31,16 +31,23 @@ class ZonasController extends BaseController
         $zonas = Zona::all();
         return $this->sendResponse(ZonaResource::collection($zonas), 'Lista de zonas obtenida con éxito.');
     }
+
     /**
      * @OA\Get(
-     *     path="/api/zonas",
-     *     summary="Obtener lista de zonas",
+     *     path="/api/zonas/{zona}",
+     *     summary="Obtener detalles de una zona específica",
      *     tags={"Zonas"},
      *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="zona",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Lista de zonas obtenida con éxito",
-     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/Zona"))
+     *         description="Zona obtenida con éxito",
+     *         @OA\JsonContent(ref="#/components/schemas/Zona")
      *     ),
      *     @OA\Response(response=403, description="No autorizado")
      * )
@@ -50,5 +57,4 @@ class ZonasController extends BaseController
         $this->authorize('view', $zona);
         return $this->sendResponse(new ZonaResource($zona), 'Zona obtenida con éxito.');
     }
-
 }

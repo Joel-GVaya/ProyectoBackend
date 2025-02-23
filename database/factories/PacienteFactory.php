@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Factories;
+
 use App\Models\Paciente;
-use App\Models\Zona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PacienteFactory extends Factory
@@ -14,9 +14,9 @@ class PacienteFactory extends Factory
         return [
             'nombre' => $this->faker->name,
             'fecha_nac' => $this->faker->date(),
-            'DNI' => $this->faker->unique()->numerify('#########'),
+            'DNI' => $this->generateDNI(),
             'num_sip' => $this->faker->numerify('########'),
-            'telefono' => $this->faker->phoneNumber,
+            'telefono' => $this->faker->numerify('#########'),
             'correo' => $this->faker->unique()->safeEmail,
             'direccion' => $this->faker->address,
             'ciudad' => $this->faker->city,
@@ -28,5 +28,13 @@ class PacienteFactory extends Factory
             'sit_economica' => $this->faker->word,
             'autonomia' => $this->faker->boolean,
         ];
+    }
+
+    private function generateDNI()
+    {
+        $numbers = $this->faker->numerify('########');
+        $letters = 'TRWAGMYFPDXBNJZSQVHLCKE';
+        $letter = $letters[$numbers % 23];
+        return $numbers . $letter;
     }
 }
