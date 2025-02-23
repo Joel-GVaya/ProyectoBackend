@@ -52,7 +52,7 @@
                     <option value="{{ $zona->id }}">{{ $zona->nombre }}</option>
                 @endforeach
             </select>
-        </div>        
+        </div>
         <div class="form-group">
             <label for="nombre_user">Nombre de Usuario</label>
             <input type="text" name="nombre_user" class="form-control" required>

@@ -65,7 +65,7 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
     Route::get('/zonas', [ZonasController::class, 'index']);
     Route::get('/zonas/{zona}', [ZonasController::class, 'show']);
     Route::get('/zonas/{id}/pacientes', [ZonasController::class, 'pacientes']);
-    Route::get('/zonas/{id}/operadores', [OperadoresController::class, 'index']); 
+    Route::get('/zonas/{id}/operadores', [OperadoresController::class, 'index']);
 
     Route::get('/reportes/emergencias', [ReportesController::class, 'emergencias']);
     Route::get('/reportes/pacientes', [ReportesController::class, 'pacientes']);

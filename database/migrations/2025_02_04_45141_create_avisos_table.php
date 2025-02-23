@@ -15,8 +15,8 @@ class CreateAvisosTable extends Migration
             $table->enum('categoria', ['medicacion', 'especiales', 'emergencias', 'luto', 'altas', 'suspension', 'retorno'])->nullable();
             $table->enum('estado', ['pendiente', 'completado', 'cancelado'])->default('pendiente');
             $table->text('descripcion')->nullable();
-            $table->timestamp('fecha_inicio')->useCurrent();
-            $table->enum('frecuencia',['puntual', 'periodica'])->nullable();
+            $table->timestamp('fecha_inicio');
+            $table->string('frecuencia')->nullable();
             $table->foreignId('zona_id')->nullable()->constrained('zonas')->onDelete('set null');
             $table->foreignId('paciente_id')->nullable()->constrained('pacientes')->onDelete('set null');
             $table->timestamps();

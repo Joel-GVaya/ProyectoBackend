@@ -11,12 +11,10 @@
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" class="form-control" value="{{ old('nombre', $user->nombre) }}" required>
         </div>
-        
         <div class="form-group">
             <label for="telefono">Teléfono</label>
             <input type="text" name="telefono" class="form-control" value="{{ old('telefono', $user->telefono) }}" required>
         </div>
-        
         <div class="form-group">
             <label for="correo">Correo</label>
             <input type="email" name="correo" class="form-control" value="{{ old('correo', $user->correo) }}" required>
@@ -49,7 +47,6 @@
                 @endforeach
             </select>
         </div>
-        
         <div class="form-group">
             <label for="nombre_user">Nombre de Usuario</label>
             <input type="text" name="nombre_user" class="form-control" value="{{ old('nombre_user', $user->nombre_user) }}" required>

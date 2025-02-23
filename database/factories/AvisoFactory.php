@@ -3,11 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Aviso;
-use App\Models\Operador;
 use App\Models\Paciente;
-use App\Models\Zona;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AvisoFactory extends Factory
 {
@@ -17,15 +15,28 @@ class AvisoFactory extends Factory
     {
         $tipo = $this->faker->randomElement(['avisos', 'seguimiento', 'agendas', 'alarma']);
 
-        $categoria = $tipo !== 'alarma' ? $this->faker->randomElement(['medicacion', 'especiales', 'emergencias', 'luto', 'altas', 'suspension', 'retorno']) : null;
+        $categoria = null;
+        if ($tipo === 'avisos') {
+            $categoria = $this->faker->randomElement(['medicacion', 'especiales']);
+        } elseif ($tipo === 'seguimiento') {
+            $categoria = $this->faker->randomElement(['emergencias', 'luto', 'altas']);
+        } elseif ($tipo === 'agendas') {
+            $categoria = $this->faker->randomElement(['suspension', 'retorno']);
+        }
+
+        $frecuencia = $this->faker->randomElement(['puntual', 'periodico']);
+        if ($frecuencia === 'periodico') {
+            $dias_periodicos = $this->faker->numberBetween(1, 30);
+            $frecuencia = "periodico-{$dias_periodicos}";
+        }
 
         return [
             'user_id' => User::factory(),
             'tipo' => $tipo,
             'categoria' => $categoria,
             'descripcion' => $this->faker->sentence,
-            'fecha_inicio' => $this->faker->date(),
-            'frecuencia' => $this->faker->randomElement(['puntual', 'periodica']),
+            'fecha_inicio' => $this->faker->dateTimeThisYear(),
+            'frecuencia' => $frecuencia,
             'estado' => $this->faker->randomElement(['pendiente', 'completado', 'cancelado']),
             'zona_id' => $this->faker->randomElement([1, 2, 3]),
             'paciente_id' => Paciente::factory(),

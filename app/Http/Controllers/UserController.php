@@ -39,10 +39,10 @@ class UserController extends Controller
             'nombre_user' => 'required|string|max:15',
             'password' => 'required|string|min:8',
         ]);
-    
+
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
-        
+
         try {
             User::create($data);
             return redirect()->route('users.index')->with('success', 'Usuario creado con éxito.');
@@ -68,7 +68,7 @@ class UserController extends Controller
             'idiomas' => 'nullable|string|max:50',
             'fecha_contrato' => 'required|date',
             'nombre_user' => 'required|string|max:15',
-            'password' => 'nullable|string|min:8', 
+            'password' => 'nullable|string|min:8',
         ]);
 
         $data = $request->all();
