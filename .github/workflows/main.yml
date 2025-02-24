@@ -38,5 +38,4 @@ jobs:
 
             # Reiniciar los servicios
             sudo systemctl restart nginx
-            sudo systemctl restart php-fpm
           EOF
