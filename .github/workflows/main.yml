@@ -31,6 +31,7 @@ jobs:
             php artisan view:clear
             php artisan cache:clear
             php artisan migrate --force
+            php artisan l5-swagger:generate
 
             # Cambiar propietario y grupo para que tanto 'ubuntu' como 'www-data' tengan acceso
             sudo chown -R ubuntu:www-data /var/www/proyecto-backend
