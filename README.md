@@ -1,5 +1,5 @@
 
-# Proyecto #Teleasistencia
+# Proyecto Teleasistencia
 
 ![Vista previa de la aplicación](/teleasistencia.png)
 
