@@ -48,5 +48,5 @@ class AuthController extends BaseController
         Auth::logout();
 
         return $this->sendResponse([], 'Operador cerrado sesión correctamente', 200);
-    }  
+    }
 }
