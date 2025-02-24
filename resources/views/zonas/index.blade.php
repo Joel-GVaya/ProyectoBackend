@@ -4,6 +4,10 @@
 <div class="container">
     <h1>Zonas</h1>
     <a href="{{ route('zonas.create') }}" class="btn btn-primary">Crear Nueva Zona</a>
+    <br>
+    <br>
+    <br>
+    <a href="{{ route('admin.index') }}" class="btn btn-secondary mt-3">Volver al panel de Administración</a>
     <table class="table mt-4">
         <thead>
             <tr>

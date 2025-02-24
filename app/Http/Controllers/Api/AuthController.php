@@ -48,36 +48,5 @@ class AuthController extends BaseController
         Auth::logout();
 
         return $this->sendResponse([], 'Operador cerrado sesión correctamente', 200);
-    }
-
-    public function redirectToGoogle()
-    {
-        return Socialite::driver('google')->redirect();
-    }
-
-
-    public function handleGoogleCallback()
-    {
-        try {
-            $googleUser = Socialite::driver('google')->stateless()->user();
-            $user = User::updateOrCreate(
-                ['email' => $googleUser->email],
-                [
-                    'name' => $googleUser->name,
-                    'google_id' => $googleUser->id,
-                    'avatar' => $googleUser->avatar,
-                    'password' => bcrypt(uniqid()),
-                    'role' => 'Usuario',
-                ]
-            );
-
-            Auth::login($user);
-
-            $token = $user->createToken('Personal Access Token')->plainTextToken;
-
-            return redirect()->to("http://localhost:5173/auth-success?token=$token");
-        } catch (\Exception $e) {
-            return redirect()->to("http://localhost:5173/auth-error");
-        }
-    }    
+    }  
 }
