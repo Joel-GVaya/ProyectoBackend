@@ -4,7 +4,6 @@
 <div class="container">
     <h1>Crear Usuario</h1>
 
-    <!-- Mostrar errores de validación -->
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -64,4 +63,7 @@
         <button type="submit" class="btn btn-success">Crear Usuario</button>
     </form>
 </div>
+
+<a href="{{ route('users.index') }}" class="btn btn-secondary">Volver</a>
+
 @endsection

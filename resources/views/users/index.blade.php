@@ -4,6 +4,11 @@
 <div class="container">
     <h1>Lista de Usuarios</h1>
     <a href="{{ route('users.create') }}" class="btn btn-primary">Crear Usuario</a>
+    <br>    
+    <br>
+    <br>
+    <a href="{{ route('admin.index') }}" class="btn btn-secondary mt-3">Volver al panel de Administración</a>
+    <br>
 
     <table class="table">
         <thead>

@@ -8,10 +8,11 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
-Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+Route::get('/admin', function () {
+    return view('admin.index');
+})->name('admin.index');
 
 Route::resource('zonas', ZonaController::class);
-Route::resource('users', UserController::class);//->middleware('auth');
+Route::resource('users', UserController::class);
 
 require __DIR__.'/auth.php';
