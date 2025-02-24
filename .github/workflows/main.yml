@@ -23,7 +23,7 @@ jobs:
       - name: Conectar y ejecutar despliegue
         run: |
           ssh ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} << 'EOF'
-            cd /var/www/proyecto-backend
+            cd /var/www/proyecto-backend/current
             git pull origin main
             composer install --no-dev --optimize-autoloader
             php artisan config:clear
