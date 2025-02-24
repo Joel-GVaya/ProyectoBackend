@@ -1,0 +1,41 @@
+name: Deploy Laravel a AWS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.AWS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Conectar y ejecutar despliegue
+        run: |
+          ssh ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} << 'EOF'
+            cd /var/www/proyecto-backend/current
+            git pull origin main
+            composer install --no-dev --optimize-autoloader
+            php artisan config:clear
+            php artisan route:clear
+            php artisan view:clear
+            php artisan cache:clear
+            php artisan migrate --force
+
+            # Cambiar propietario y grupo para que tanto 'ubuntu' como 'www-data' tengan acceso
+            sudo chown -R ubuntu:www-data /var/www/proyecto-backend
+            sudo chmod -R 775 /var/www/proyecto-backend/current/storage /var/www/proyecto-backend/current/bootstrap/cache
+
+            # Reiniciar los servicios
+            sudo systemctl restart nginx
+          EOF
