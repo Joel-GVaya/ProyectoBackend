@@ -34,7 +34,7 @@ jobs:
 
             # Cambiar propietario y grupo para que tanto 'ubuntu' como 'www-data' tengan acceso
             sudo chown -R ubuntu:www-data /var/www/proyecto-backend
-            sudo chmod -R 775 /var/www/proyecto-backend/storage /var/www/proyecto-backend/bootstrap/cache
+            sudo chmod -R 775 /var/www/proyecto-backend/current/storage /var/www/proyecto-backend/current/bootstrap/cache
 
             # Reiniciar los servicios
             sudo systemctl restart nginx
