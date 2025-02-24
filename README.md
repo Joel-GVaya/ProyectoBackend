@@ -1,66 +1,100 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Proyecto #Teleasistencia
 
-## About Laravel
+![Vista previa de la aplicación](/teleasistencia.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Descripción
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Nuestra aplicación de teleasistencia mejora la calidad de vida de los usuarios al facilitar el acceso a servicios médicos y apoyo emocional sin necesidad de desplazamientos. Proporciona una manera efectiva de monitorear la salud y gestionar tratamientos, así como de ofrecer compañía y asistencia en situaciones de emergencia. Además, permite a los profesionales de la salud optimizar su tiempo y recursos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Tabla de Contenidos
 
-## Learning Laravel
+1. [Tecnologías utilizadas](#tecnologías-utilizadas)
+2. [Puesta en marcha](#puesta-en-marcha)
+3. [Entornos](#entornos)
+4. [Documentación de desarrollo](#documentación-de-desarrollo)
+5. [Guía de Contribución](#guía-de-contribución)
+6. [Lista de Contribuidores](#lista-de-contribuidores)
+7. [Inspiración](#inspiración)
+8. [Licencia](#licencia)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Tecnologías utilizadas
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Frontend**: [Vue.js](https://vuejs.org/guide/introduction) para crear una interfaz de usuario interactiva y responsiva.
+- **Backend**: [Laravel](https://laravel.com/docs/11.x/readme) como API para gestionar la lógica del negocio y la comunicación con la base de datos.
+- **Gestión de Estado**: [Pinia](https://pinia.vuejs.org/) para manejar el estado global de la aplicación.
+- **Base de Datos**: [MySQL](https://dev.mysql.com/doc/) para almacenar la información de pacientes y profesionales de la salud.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Puesta en marcha
 
-## Laravel Sponsors
+Para poner en marcha el proyecto, sigue estos pasos:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Backend
 
-### Premium Partners
+```bash
+mkdir backend
+cd backend
+git clone https://github.com/Joel-GVaya/ProyectoBackend
+composer install
+./vendor/bin/sail up -d
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Frontend
 
-## Contributing
+```bash
+mkdir frontend
+cd frontend
+git clone https://github.com/Joel-GVaya/ProyectoFrontend
+npm install
+npm run dev
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Entornos
 
-## Code of Conduct
+- **Frontend**
+  - Desarrollo: https://localhost:3000
+  - Staging: http://front.projectegrup3.ddaw.es/
+  
+- **Backend**
+  - Desarrollo: https://localhost:8000/api
+  - Staging: http://back.projectegrup3.ddaw.es/
+  
+- **Producción**: http://www.projectegrup3.ddaw.es/
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Guía de Contribución 
 
-## Security Vulnerabilities
+Cualquier contribución al proyecto deberá seguir las siguientes [normas de contribución](CONTRIBUTING.md).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Documentación de desarrollo
 
-## License
+Aquí están los enlaces a la documentación de las tecnologías utilizadas en el proyecto:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- [Vue.js](https://vuejs.org/guide/introduction)
+- [Laravel](https://laravel.com/docs/11.x/readme)
+- [Pinia](https://pinia.vuejs.org/)
+- [MySQL](https://dev.mysql.com/doc/)
+
+## Lista de Contribuidores
+
+**Contributors Proyecto conjunto beta (antes de separar):**
+<a href="https://github.com/Tartanillas/ProyectoFinal/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Tartanillas/ProyectoFinal" />
+</a>
+
+**Contributors Backend:**
+<a href="https://github.com/Joel-GVaya/ProyectoBackend/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Joel-GVaya/ProyectoBackend" />
+</a>
+
+**Contributors Frontend:**
+<a href="https://github.com/Joel-GVaya/ProyectoFrontend/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Joel-GVaya/ProyectoFrontend" />
+</a>
+
+## Inspiración
+
+Este proyecto se desarrolla como respuesta a la necesidad de nuestras compañeras del grado de Asistencia, inspirado en sus versiones anteriores obsoletas.
+
+## Licencia
+
+Este proyecto se desarrolla y distribuye de acuerdo a los términos de la [Licencia MIT](LICENSE) incluida.
