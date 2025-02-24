@@ -1,4 +1,4 @@
-name: Deploy Laravel to AWS
+name: Deploy Laravel a AWS
 
 on:
   push:
@@ -31,7 +31,12 @@ jobs:
             php artisan view:clear
             php artisan cache:clear
             php artisan migrate --force
-            chmod -R 775 storage bootstrap/cache
+
+            # Cambiar propietario y grupo para que tanto 'ubuntu' como 'www-data' tengan acceso
+            sudo chown -R ubuntu:www-data /var/www/proyecto-backend
+            sudo chmod -R 775 /var/www/proyecto-backend/storage /var/www/proyecto-backend/bootstrap/cache
+
+            # Reiniciar los servicios
             sudo systemctl restart nginx
             sudo systemctl restart php-fpm
           EOF
