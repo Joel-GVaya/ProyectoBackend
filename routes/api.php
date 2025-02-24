@@ -67,9 +67,9 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
     Route::get('/zonas/{id}/pacientes', [ZonasController::class, 'pacientes']);
     Route::get('/zonas/{id}/operadores', [OperadoresController::class, 'index']);
 
-    Route::get('/reportes/emergencias', [ReportesController::class, 'emergencias']);
-    Route::get('/reportes/pacientes', [ReportesController::class, 'pacientes']);
-    Route::get('/reportes/llamadas-programadas', [ReportesController::class, 'llamadasProgramadas']);
+    Route::get('/reportes/emergencias/{zona_id}', [ReportesController::class, 'emergencies']);
+    Route::get('/reportes/pacientes', [ReportesController::class, 'patients']);
+    Route::post('/reportes/llamadas-programadas', [ReportesController::class, 'scheduledCalls']);
     Route::get('/reportes/llamadas-realizadas', [ReportesController::class, 'llamadasRealizadas']);
     Route::get('/reportes/historico-paciente/{id}', [ReportesController::class, 'historicoPaciente']);
 });
