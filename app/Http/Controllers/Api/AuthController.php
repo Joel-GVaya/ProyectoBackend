@@ -36,6 +36,10 @@ class AuthController extends BaseController
             $result['token'] = $token;
             $result['zona_id'] = $authOperador->zona_id;
 
+        if ($authOperador->role === 'Administrador') {
+            $result['redirect'] = route('admin.index');
+        }
+
 
             return $this->sendResponse($result, 'Operador autenticado correctamente', 200);
         }
