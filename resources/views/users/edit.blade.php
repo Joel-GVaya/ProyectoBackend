@@ -60,4 +60,7 @@
         <button type="submit" class="btn btn-success">Actualizar Usuario</button>
     </form>
 </div>
+
+<a href="{{ route('users.index') }}" class="btn btn-secondary">Volver</a>
+
 @endsection
